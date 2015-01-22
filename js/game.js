@@ -13,7 +13,8 @@ var game = {
 	"onload" : function () {
 	// Initialize the video.
 	if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
-		
+		//fixing screen size
+
 		alert("Your browser does not support HTML5 canvas.");
 		return;
 	}
@@ -40,6 +41,11 @@ var game = {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
+			me.pool.register("player", game.PlayerEntity, true);
+			//addin gplayer to the pool of objects I can use
+			//true makes any object i make true i can have multiple instinces of
+			//if i want to make another version of him i can do that with this
+
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 

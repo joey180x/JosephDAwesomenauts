@@ -6,7 +6,16 @@ game.PlayScreen = me.ScreenObject.extend({
 		// reset the score
 		game.data.score = 0;
 
-		me.levelDirector.loadLevel("Level01")
+		me.levelDirector.loadLevel("Level01");
+		//loading "level01" one game is loaded
+
+		var player = me.pool.pull("player", 0, 420, {});
+		//pulling instince of the player
+		//pulling player out of the pool
+
+		me.game.world.addChild(player, 5);
+		//addChild is adding player to world
+		//higher the number the closer player is to the screen
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
