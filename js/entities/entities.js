@@ -14,9 +14,23 @@
 					//rectangle of what character can walk in to
 				}
 			}]);
+
+			this.body.setVelocity(5, 0);
+			//movement speed
 		},
 
-		update: function(){
+		update: function(delta){
+			if(me.input.isKeyPressed("right")){
+				//sets the position of my x by adding the velocity defined above in
+				// setVelocity() and multiplying it by me.timer.tick.
+				//me.timer.tick makes the movement look smooth
+				this.body.vel.x += this.body.accel.x * me.timer.tick;
+			}
+			else{
+				this.body.vel.x = 0;
+			}
 
+			this.body.update(delta);
+			return true;
 		}
 	});
