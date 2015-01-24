@@ -7,7 +7,7 @@ game.resources = [
 	 {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
-	 
+	 {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
 	 //loaded tile sets for game from image folder
 
 
@@ -21,7 +21,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
- 	 {name: "level01", type: "tmx", src: "data/map/test1.tmx"},
+ 	 {name: "level01", type: "tmx", src: "data/map/test.tmx"},
  	 //loaded level one named test.tmx
 
 	/* Background music. 
