@@ -45,6 +45,9 @@ var game = {
 			//addin gplayer to the pool of objects I can use
 			//true makes any object i make true i can have multiple instinces of
 			//if i want to make another version of him i can do that with this
+			me.pool.register("PlayerBase", game.PlayerBaseEntity);
+			me.pool.register("EnemyBase", game.EnemyBaseEntity);
+
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

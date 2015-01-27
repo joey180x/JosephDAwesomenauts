@@ -45,7 +45,7 @@
 				this.flipX(true);
 				//flips animation
 			}
-			else{
+			else{ 
 
 				this.body.vel.x = 0;
 				//checking if velocity is 0
@@ -74,20 +74,38 @@
 			return true;
 			//returning true
 		}
+});
+
+
+
+			
 
 
 
 
-			game.PlayerBase.Entity = me.Entity.extend({
-			init function(x, y, settings){
+
+
+
+
+
+
+
+
+
+
+
+
+
+			game.PlayerBaseEntity = me.Entity.extend({
+				init : function(x, y, settings) {
 				this._super(me.Entity, 'init', [x, y, {
 					image: "tower",
 					width: 100,
 					height: 100,
 					spritewidth: "100",
 					spriteheight: "100",
-					getShape function(){
-						return (new.me.Rect(0, 0, 100, 100)).toPolygon();
+					getShape: function(){
+						return (new me.Rect(0, 0, 100, 100)).toPolygon();
 					}
 				}]);
 				this.broken = false;
@@ -99,13 +117,13 @@
 			
 			},
 
-			update:function(){
+			update:function(delta){
 				if(this.health<=0){
 					this.broken = true;
 				}
 				this.body.update(delta);
 
-				this._super(me.Entity, "update", [dalta]);
+				this._super(me.Entity, "update", [delta]);
 				return true;
 			},
 
@@ -118,16 +136,21 @@
 
 
 
-				game.PlayerBase.Entity = me.Entity.extend({
-			init function(x, y, settings){
+				
+
+
+
+
+				game.EnemyBaseEntity = me.Entity.extend({
+			init : function(x, y, settings){
 				this._super(me.Entity, 'init', [x, y, {
 					image: "tower",
 					width: 100,
 					height: 100,
 					spritewidth: "100",
 					spriteheight: "100",
-					getShape function(){
-						return (new.me.Rect(0, 0, 100, 100)).toPolygon();
+					getShape: function(){
+						return (new me.Rect(0, 0, 100, 100)).toPolygon();
 					}
 				}]);
 				this.broken = false;
@@ -135,17 +158,17 @@
 				this.alwaysUpdate = true;
 				this.body.onCollision = this.onCollision.bind(this);
 
-				this.type = "PlayerBaseEntity";
+				this.type = "EnemyBaseEntity";
 			
 			},
 
-			update:function(){
+			update:function(delta){
 				if(this.health<=0){
 					this.broken = true;
 				}
 				this.body.update(delta);
 
-				this._super(me.Entity, "update", [dalta]);
+				this._super(me.Entity, "update", [delta]);
 				return true;
 			},
 
