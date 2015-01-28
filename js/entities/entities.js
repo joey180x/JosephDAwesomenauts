@@ -77,71 +77,58 @@
 });
 
 
-
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			game.PlayerBaseEntity = me.Entity.extend({
 				init : function(x, y, settings) {
 				this._super(me.Entity, 'init', [x, y, {
 					image: "tower",
+					//tower image
 					width: 100,
 					height: 100,
 					spritewidth: "100",
+					//spright width 100
 					spriteheight: "100",
+					//sprite height 100
 					getShape: function(){
 						return (new me.Rect(0, 0, 100, 100)).toPolygon();
 					}
 				}]);
 				this.broken = false;
+				//variable saying tower is not destroyed
 				this.health = 10;
+				//10 health
 				this.alwaysUpdate = true;
+				//even if tower is not showing on screen it still
+				//is updating
 				this.body.onCollision = this.onCollision.bind(this);
-
+				//if someone runs in to the tower it will be able to collide with it
 				this.type = "PlayerBaseEntity";
-			
 			},
 
 			update:function(delta){
 				if(this.health<=0){
+					//if my health is greater then or equal to 0
 					this.broken = true;
+					//they we are dead
 				}
 				this.body.update(delta);
+				//making sure delta updates
 
 				this._super(me.Entity, "update", [delta]);
+				//calling super class
 				return true;
+				//returning true
 			},
 
 			onCollision: function(){
+				//on collision function empty for now
 
 			}
 
 		});
 
 
-
-
-				
-
-
-
-
-				game.EnemyBaseEntity = me.Entity.extend({
+			game.EnemyBaseEntity = me.Entity.extend({
+				//comments are in code above because theyre exactly the same
 			init : function(x, y, settings){
 				this._super(me.Entity, 'init', [x, y, {
 					image: "tower",
