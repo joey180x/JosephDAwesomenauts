@@ -25,11 +25,14 @@
 			this.body.setVelocity(5, 20);
 			//movement speed
 			//changing the x and y location
+			me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+			//follows the player on the x axis on the screen
 
 			this.renderable.addAnimation("idle", [78]);
 			//telling the game what the idle position does
 			this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 			//telling the game which animations to use for walking
+			this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
 		
 			this.renderable.setCurrentAnimation("idle");
 			//rendering the idle position 
@@ -51,7 +54,11 @@
 				//checking if velocity is 0
 			}
 
-			if (this.body.vel.x !==0) {
+			
+
+
+			
+			else if (this.body.vel.x !== 0) {
 			//only going to walk animation if guy is moving
 
 			if (!this.renderable.isCurrentAnimation("walk")) {
@@ -64,6 +71,21 @@
 			this.renderable.setCurrentAnimation("idle");
 			//setting animation to idle if not walking
 		}
+		if(me.input.isKeyPressed("attack")){
+				
+				if(!this.renderable.isCurrentAnimation("attack")){
+					console.log(!this.renderable.isCurrentAnimation("attack"));
+					//Sets the current animation to attack and once that is over
+					//goes back to the idle animation
+					this.renderable.setCurrentAnimation("walk", "idle");
+					//Mkaes it so that the the next time we start this sequence 
+					//we start from the first animation, not wherever we left off at
+					//when we switched to another animation
+					this.renderable.setCurrentAnimationFrame();
+				}
+			}
+
+
 
 
 			this.body.update(delta);
@@ -102,6 +124,13 @@
 				this.body.onCollision = this.onCollision.bind(this);
 				//if someone runs in to the tower it will be able to collide with it
 				this.type = "PlayerBaseEntity";
+
+				this.renderable.addAnimation("idle", [0]);
+				//at the 0 idle posotion
+				this.renderable.addAnimation("broken", [1]);
+				//at the 1 position
+				this.renderable.setCurrentAnimation("idle");
+				//idle position
 			},
 
 			update:function(delta){
@@ -109,6 +138,7 @@
 					//if my health is greater then or equal to 0
 					this.broken = true;
 					//they we are dead
+					this.renderable.setCurrentAnimation("broken");
 				}
 				this.body.update(delta);
 				//making sure delta updates
@@ -146,12 +176,21 @@
 				this.body.onCollision = this.onCollision.bind(this);
 
 				this.type = "EnemyBaseEntity";
+
+				this.renderable.addAnimation("idle", [0]);
+				//at the 0 idle posotion
+				this.renderable.addAnimation("broken", [1]);
+				//at the 1 position
+				this.renderable.setCurrentAnimation("idle");
+				//idle position
 			
 			},
 
 			update:function(delta){
 				if(this.health<=0){
 					this.broken = true;
+					this.renderable.setCurrentAnimation("broken");
+					//renderable is in melonjs to be able to add animations so they will render
 				}
 				this.body.update(delta);
 
