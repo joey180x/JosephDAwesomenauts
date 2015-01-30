@@ -56,9 +56,19 @@
 
 			
 //
-
-			
-			else if (this.body.vel.x !== 0) {
+		if(me.input.isKeyPressed("attack")){
+				
+				if(!this.renderable.isCurrentAnimation("attack")){
+					//Sets the current animation to attack and once that is over
+					//goes back to the idle animation
+					this.renderable.setCurrentAnimation("attack", "idle");
+					//Mkaes it so that the the next time we start this sequence 
+					//we start from the first animation, not wherever we left off at
+					//when we switched to another animation
+					this.renderable.setAnimationFrame();
+				}
+			}		
+			else if(this.body.vel.x !== 0) {
 			//only going to walk animation if guy is moving
 
 			if (!this.renderable.isCurrentAnimation("walk")) {
@@ -71,20 +81,9 @@
 			this.renderable.setCurrentAnimation("idle");
 			//setting animation to idle if not walking
 		}
-		if(me.input.isKeyPressed("attack")){
-				
-				if(!this.renderable.isCurrentAnimation("attack")){
-					console.log(!this.renderable.isCurrentAnimation("attack"));
-					//Sets the current animation to attack and once that is over
-					//goes back to the idle animation
-					this.renderable.setCurrentAnimation("walk", "idle");
-					//Mkaes it so that the the next time we start this sequence 
-					//we start from the first animation, not wherever we left off at
-					//when we switched to another animation
-					this.renderable.setCurrentAnimationFrame();
-				}
-			}
 
+
+		
 
 
 
